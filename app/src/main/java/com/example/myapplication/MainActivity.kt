@@ -8,26 +8,24 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var nama: TextView
-    private lateinit var email: TextView
-    private lateinit var alamat: TextView
-    private lateinit var hp: TextView
-    private lateinit var btnKirim: Button
+    var clickCount = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        nama = findViewById(R.id.nama)
-        email = findViewById(R.id.email)
-        alamat = findViewById(R.id.alamat)
-        hp = findViewById(R.id.hp)
-        btnKirim = findViewById(R.id.button)
+        val tambah = findViewById(R.id.button) as Button
+        val kurang = findViewById(R.id.button2) as Button
+        val tampil = findViewById(R.id.textView) as TextView
 
-        btnKirim.setOnClickListener{
-            val intentTujuan = Intent(this@MainActivity, MainActivity2::class.java);
-            intentTujuan.putExtra(MainActivity2.namadat, nama.text.toString())
-            startActivity(intentTujuan);
+        tambah.setOnClickListener {
+            clickCount += 1
+            tampil.text = clickCount.toString()
+        }
+
+        kurang.setOnClickListener {
+            clickCount -= 1
+            tampil.text = clickCount.toString()
         }
 
     }
